@@ -1,7 +1,6 @@
-import * as express from 'express';
-import { Request, Response } from 'express';
-import * as serverless from 'serverless-http';
-import * as cors from 'cors';
+import express, { Request, Response } from 'express';
+import serverless from 'serverless-http';
+import cors from 'cors';
 import axios from 'axios';
 import { ClerkExpressRequireAuth } from '@clerk/clerk-sdk-node';
 
