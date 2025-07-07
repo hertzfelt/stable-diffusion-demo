@@ -1,7 +1,7 @@
 // API base URL for our proxy server
 // Use relative URL in production for Netlify functions, fallback to local dev server
 const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '/.netlify/functions/api'
+  ? '/api'
   : 'http://localhost:3001/api';
 
 // API error handling is done inline in each function

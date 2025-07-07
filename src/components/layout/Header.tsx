@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, HStack, Link as ChakraLink } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
+import { UserButton, SignedIn, SignedOut } from '@clerk/clerk-react';
 
 const Header = () => {
   return (
@@ -12,15 +13,40 @@ const Header = () => {
         </Heading>
         
         <HStack spacing={8}>
-          <ChakraLink as={RouterLink} to="/text-to-image" color="white" fontWeight="medium">
-            Text to Image
-          </ChakraLink>
-          <ChakraLink as={RouterLink} to="/inpainting" color="white" fontWeight="medium">
-            Inpainting
-          </ChakraLink>
-          <ChakraLink as={RouterLink} to="/gallery" color="white" fontWeight="medium">
-            Gallery
-          </ChakraLink>
+          {/* Navigation Links - Only show for signed in users */}
+          <SignedIn>
+            <ChakraLink as={RouterLink} to="/text-to-image" color="white" fontWeight="medium">
+              Text to Image
+            </ChakraLink>
+            <ChakraLink as={RouterLink} to="/inpainting" color="white" fontWeight="medium">
+              Inpainting
+            </ChakraLink>
+            <ChakraLink as={RouterLink} to="/gallery" color="white" fontWeight="medium">
+              Gallery
+            </ChakraLink>
+            <UserButton 
+              appearance={{
+                elements: {
+                  avatarBox: {
+                    width: '32px',
+                    height: '32px'
+                  }
+                }
+              }}
+            />
+          </SignedIn>
+          
+          {/* Authentication Components */}
+          <SignedOut>
+            <HStack spacing={4}>
+              <ChakraLink as={RouterLink} to="/sign-in" color="white" fontWeight="medium">
+                Sign In
+              </ChakraLink>
+              <ChakraLink as={RouterLink} to="/sign-up" color="white" fontWeight="medium">
+                Sign Up
+              </ChakraLink>
+            </HStack>
+          </SignedOut>
         </HStack>
       </Flex>
     </Box>
