@@ -107,9 +107,8 @@ async function handleTextToImage(req: Request, res: Response): Promise<Response 
     try {
       // Create a prediction with the Replicate API using Stable Diffusion 3.5 Large
       const createPredictionResponse = await axios.post(
-        'https://api.replicate.com/v1/predictions',
+        'https://api.replicate.com/v1/models/stability-ai/stable-diffusion-3.5-large/predictions',
         {
-          version: "w3xvn77rqsrm60cjphrmryczjq", // stability-ai/stable-diffusion-3.5-large
           input: req.body.input
         },
         {
