@@ -10,7 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <Box minH="100vh" bg="gray.900">
       <Header />
-      <Box as="main" maxW="container.xl" mx="auto" px={4} py={8}>
+      <Box as="main" maxW="7xl" mx="auto" px={8} py={8}>
         {children}
       </Box>
     </Box>

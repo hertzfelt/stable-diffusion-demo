@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 const HomePage = () => {
   return (
     <Box>
-      <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="space-between" mb={12} gap={8}>
+      <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="center" mb={12} gap={8} maxW="6xl" mx="auto">
         <VStack align="flex-start" spacing={6} maxW="600px">
           <Heading size="2xl" lineHeight="shorter">
             Stable Diffusion Showcase
@@ -35,8 +35,8 @@ const HomePage = () => {
         </Box>
       </Flex>
       
-      <Box mt={16}>
-        <Heading size="lg" mb={6}>Featured Capabilities</Heading>
+      <Box mt={16} maxW="6xl" mx="auto">
+        <Heading size="lg" mb={6} textAlign="center">Featured Capabilities</Heading>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
           <FeatureCard 
             title="Text to Image" 

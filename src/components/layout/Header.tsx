@@ -5,7 +5,7 @@ import { UserButton, SignedIn, SignedOut } from '@clerk/clerk-react';
 const Header = () => {
   return (
     <Box as="header" bg="gray.900" borderBottom="1px solid" borderColor="brand.primary" py={4}>
-      <Flex maxW="container.xl" mx="auto" px={4} align="center" justify="space-between">
+      <Flex maxW="7xl" mx="auto" px={8} align="center" justify="space-between">
         <Heading as="h1" size="md" color="white">
           <ChakraLink as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
             Stability AI Showcase
