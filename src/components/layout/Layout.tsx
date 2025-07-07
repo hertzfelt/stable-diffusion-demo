@@ -10,8 +10,20 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <Box minH="100vh" bg="gray.900">
       <Header />
-      <Box as="main" maxW="7xl" mx="auto" px={8} py={8}>
-        {children}
+      <Box 
+        as="main" 
+        maxW="1400px" 
+        mx="auto" 
+        px={8} 
+        py={8}
+        width="100%"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Box width="100%" maxW="1200px">
+          {children}
+        </Box>
       </Box>
     </Box>
   );
