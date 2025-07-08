@@ -1,20 +1,53 @@
-import { Box, Button, Flex, Heading, SimpleGrid, Text, VStack, Icon, HStack } from '@chakra-ui/react';
+// Landing page component for unauthenticated users
+// Showcases app features and provides authentication entry points
+import { Box, Button, Flex, Heading, SimpleGrid, Text, VStack, Icon, HStack, Image } from '@chakra-ui/react';
 import { SignInButton, SignUpButton } from '@clerk/clerk-react';
 import { FaImage, FaPaintBrush, FaRocket, FaLock, FaUsers, FaBolt } from 'react-icons/fa';
+import { HeroImg } from '../assets';
 
+/**
+ * Landing page component displayed to unauthenticated users
+ * 
+ * Features:
+ * - Hero section with compelling headline and CTA buttons
+ * - Feature showcase grid highlighting app capabilities
+ * - Secondary CTA section to drive sign-ups
+ * - Uses Clerk authentication components for seamless auth flow
+ * - Responsive design that works on all device sizes
+ * 
+ * Note: All auth buttons use Clerk's modal mode for better UX
+ */
 const LandingPage = () => {
   return (
-    <Box>
+    <Box width="100%">
       {/* Hero Section */}
-      <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="space-between" mb={16} gap={8}>
-        <VStack align="flex-start" spacing={6} maxW="600px">
-          <Heading size="3xl" lineHeight="shorter" bgGradient="linear(to-r, brand.primary, brand.secondary)" bgClip="text">
-            Welcome to Stability AI Showcase
-          </Heading>
+      <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="space-between" mb={16} gap={12} width="100%">
+        <VStack align={{ base: 'center', lg: 'flex-start' }} spacing={6} flex="1" maxW={{ base: "100%", lg: "600px" }} textAlign={{ base: 'center', lg: 'left' }}>
+          <VStack spacing={1} align={{ base: 'center', lg: 'flex-start' }}>
+            <Text 
+              fontSize="3xl" 
+              bgGradient="linear(to-r, brand.200, brand.primary)" 
+              bgClip="text" 
+              fontWeight="bold" 
+              textTransform="uppercase" 
+              letterSpacing="wide"
+              textShadow="0 0 20px rgba(123, 97, 255, 0.3)"
+            >
+              Stability AI Showcase
+            </Text>
+            <Heading 
+              size="4xl" 
+              lineHeight="shorter" 
+              color="white"
+              fontWeight="bold"
+            >
+              Welcome to diemel.systems
+            </Heading>
+          </VStack>
           <Text fontSize="xl" color="gray.300">
             Experience the power of cutting-edge AI image generation and editing. Create stunning visuals from text prompts, edit images with precision, and explore the future of creative AI.
           </Text>
-          <HStack spacing={4} width="100%">
+          <HStack spacing={4} width="100%" justify={{ base: 'center', lg: 'flex-start' }}>
             <SignUpButton mode="modal">
               <Button size="lg" colorScheme="purple" bg="brand.primary" _hover={{ bg: 'brand.primaryHover' }}>
                 Get Started Free
@@ -31,15 +64,36 @@ const LandingPage = () => {
         <Box 
           borderRadius="lg" 
           overflow="hidden" 
-          boxShadow="0 0 30px rgba(51, 0, 102, 0.5)"
+          flex="1"
           maxW={{ base: "100%", lg: "500px" }}
+          display="flex"
+          justifyContent="center"
         >
-          <Box bg="gray.800" width="100%" height="300px" display="flex" alignItems="center" justifyContent="center" position="relative">
-            <VStack spacing={4}>
-              <Icon as={FaImage} w={16} h={16} color="brand.primary" />
-              <Text color="gray.400" fontSize="lg" fontWeight="medium">AI-Generated Showcase</Text>
-            </VStack>
-          </Box>
+          <Image
+            src={HeroImg}
+            alt="AI-generated showcase image demonstrating Stability AI capabilities"
+            borderRadius="lg"
+            maxW={{ base: '100%', lg: '500px' }}
+            height="300px"
+            objectFit="cover"
+            fallback={
+              <Box 
+                bg="gray.800" 
+                width="100%" 
+                height="300px" 
+                display="flex" 
+                alignItems="center" 
+                justifyContent="center"
+                borderRadius="lg"
+              >
+                <VStack spacing={4}>
+                  <Icon as={FaImage} w={16} h={16} color="brand.primary" />
+                  <Text color="gray.400" fontSize="lg" fontWeight="medium">AI-Generated Showcase</Text>
+                </VStack>
+              </Box>
+            }
+            onError={(e) => console.log('Image load error:', e)}
+          />
         </Box>
       </Flex>
 
@@ -115,12 +169,29 @@ const LandingPage = () => {
   );
 };
 
+/**
+ * Props interface for the FeatureCard component
+ * @param icon - React icon component to display (from react-icons)
+ * @param title - Feature title/heading text
+ * @param description - Detailed feature description
+ */
 interface FeatureCardProps {
-  icon: any;
+  icon: React.ComponentType; // React icon component type
   title: string;
   description: string;
 }
 
+/**
+ * Reusable feature card component for highlighting app capabilities
+ * 
+ * Features:
+ * - Hover animations for better interactivity
+ * - Consistent styling with brand colors
+ * - Accessible structure with proper heading hierarchy
+ * - Icon integration for visual appeal
+ * 
+ * Used in the features grid section of the landing page
+ */
 const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
   return (
     <Box 
@@ -129,11 +200,11 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
       borderRadius="lg" 
       p={6}
       bg="gray.900"
-      transition="all 0.3s"
+      transition="all 0.3s" // Smooth transition for hover effects
       _hover={{ 
-        transform: 'translateY(-4px)',
-        boxShadow: '0 0 20px rgba(51, 0, 102, 0.4)',
-        borderColor: 'brand.primary'
+        transform: 'translateY(-4px)', // Subtle lift effect
+        boxShadow: '0 0 20px rgba(51, 0, 102, 0.4)', // Purple glow matching brand
+        borderColor: 'brand.primary' // Highlight border on hover
       }}
     >
       <VStack spacing={4} align="center" textAlign="center">

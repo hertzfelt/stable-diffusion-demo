@@ -1,18 +1,37 @@
-import { Box, Button, Flex, Heading, SimpleGrid, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Image, SimpleGrid, Text, VStack } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
+import { HeroImg, TextToImageImg, InpaintingImg, GalleryImg } from '../assets';
 
 const HomePage = () => {
   return (
     <Box>
-      <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="space-between" mb={12} gap={8}>
-        <VStack align="flex-start" spacing={6} maxW="600px">
-          <Heading size="2xl" lineHeight="shorter">
-            Stable Diffusion Showcase
-          </Heading>
+      <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="space-between" mb={12} gap={12} width="100%">
+        <VStack align={{ base: 'center', lg: 'flex-start' }} spacing={6} flex="1" maxW={{ base: "100%", lg: "600px" }} textAlign={{ base: 'center', lg: 'left' }}>
+          <VStack spacing={1} align={{ base: 'center', lg: 'flex-start' }}>
+            <Text 
+              fontSize="3xl" 
+              bgGradient="linear(to-r, brand.200, brand.primary)" 
+              bgClip="text" 
+              fontWeight="bold" 
+              textTransform="uppercase" 
+              letterSpacing="wide"
+              textShadow="0 0 20px rgba(123, 97, 255, 0.3)"
+            >
+              Stability AI Showcase
+            </Text>
+            <Heading 
+              size="4xl" 
+              lineHeight="shorter" 
+              color="white"
+              fontWeight="bold"
+            >
+              Welcome to diemel.systems
+            </Heading>
+          </VStack>
           <Text fontSize="xl" color="gray.300">
             Experience the power of Stability AI's cutting-edge image generation and editing models through an intuitive, modern interface.
           </Text>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} width="100%">
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} width="100%" justifyItems={{ base: 'center', md: 'start' }}>
             <Button as={RouterLink} to="/text-to-image" size="lg" colorScheme="purple" bg="brand.primary">
               Text to Image
             </Button>
@@ -25,13 +44,19 @@ const HomePage = () => {
         <Box 
           borderRadius="md" 
           overflow="hidden" 
-          boxShadow="0 0 20px rgba(51, 0, 102, 0.4)"
+          flex="1"
           maxW={{ base: "100%", lg: "500px" }}
+          display="flex"
+          justifyContent="center"
         >
-          {/* Placeholder for a hero image - would be replaced with an actual Stable Diffusion generated image */}
-          <Box bg="gray.800" width="100%" height="300px" display="flex" alignItems="center" justifyContent="center">
-            <Text color="gray.500">Showcase Image</Text>
-          </Box>
+          <Image
+            src={HeroImg}
+            alt="AI generated fantasy landscape hero image"
+            borderRadius="md"
+            maxW={{ base: '100%', lg: '500px' }}
+            height="300px"
+            objectFit="cover"
+          />
         </Box>
       </Flex>
       
@@ -42,16 +67,22 @@ const HomePage = () => {
             title="Text to Image" 
             description="Generate stunning images from text prompts using Stable Diffusion 3.5"
             linkTo="/text-to-image"
+            imageSrc={TextToImageImg}
+            alt="Text to Image generation preview"
           />
           <FeatureCard 
             title="Image Inpainting" 
             description="Edit specific parts of images with precise control"
             linkTo="/inpainting"
+            imageSrc={InpaintingImg}
+            alt="Image inpainting preview"
           />
           <FeatureCard 
             title="Gallery & History" 
             description="Browse and manage your generated images"
             linkTo="/gallery"
+            imageSrc={GalleryImg}
+            alt="Gallery and history preview"
           />
         </SimpleGrid>
       </Box>
@@ -63,9 +94,11 @@ interface FeatureCardProps {
   title: string;
   description: string;
   linkTo: string;
+  imageSrc: string;
+  alt: string;
 }
 
-const FeatureCard = ({ title, description, linkTo }: FeatureCardProps) => {
+const FeatureCard = ({ title, description, linkTo, imageSrc, alt }: FeatureCardProps) => {
   return (
     <Box 
       borderWidth="1px" 
@@ -78,7 +111,13 @@ const FeatureCard = ({ title, description, linkTo }: FeatureCardProps) => {
         boxShadow: '0 0 15px rgba(51, 0, 102, 0.3)'
       }}
     >
-      <Box bg="gray.800" height="160px" />
+      <Image
+        src={imageSrc}
+        alt={alt}
+        height="160px"
+        width="100%"
+        objectFit="cover"
+      />
       <Box p={5}>
         <Heading size="md" mb={2}>{title}</Heading>
         <Text color="gray.400" mb={4}>{description}</Text>

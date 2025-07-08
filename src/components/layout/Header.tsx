@@ -8,7 +8,7 @@ const Header = () => {
       <Flex maxW="1400px" mx="auto" px={8} align="center" justify="space-between">
         <Heading as="h1" size="md" color="white">
           <ChakraLink as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
-            Stability AI Showcase
+            diemel.systems
           </ChakraLink>
         </Heading>
         
